@@ -79,24 +79,45 @@ modal.addEventListener('click', (e) => {
   if (e.target === modal) modal.classList.add('hidden');
 });
 
-// Download Function
-downloadBtn.addEventListener('click', async () => {
+// Automatic Direct Download using HTML5 Canvas
+downloadBtn.addEventListener('click', () => {
   if (!activeWallpaper) return;
-  try {
-    const response = await fetch(activeWallpaper.url);
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    
+
+  const originalText = downloadBtn.textContent;
+  downloadBtn.textContent = 'Downloading...';
+
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.src = activeWallpaper.url;
+
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+
+    canvas.toBlob((blob) => {
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl);
+      downloadBtn.textContent = originalText;
+    }, 'image/jpeg', 0.95);
+  };
+
+  img.onerror = () => {
     const link = document.createElement('a');
-    link.href = blobUrl;
+    link.href = activeWallpaper.url;
+    link.target = '_blank';
     link.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
-    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(blobUrl);
-  } catch (err) {
-    window.open(activeWallpaper.url, '_blank');
-  }
+    downloadBtn.textContent = originalText;
+  };
 });
 
 // Theme Toggle
