@@ -5,25 +5,25 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.error('SW Registration Failed', err));
 }
 
-// 3 Pre-uploaded Minimal Wallpapers
+// 3 Pre-uploaded Minimal Wallpapers (Hosted directly in GitHub)
 const wallpapers = [
   {
     id: 1,
     title: "Monochrome Steps",
     category: "minimal",
-    url: "https://i.pinimg.com/1200x/ce/a7/50/cea750cd3f8310e3e09fad6a91ad9de8.jpg"
+    url: "./wall-1.jpg"
   },
   {
     id: 2,
     title: "Granular Flow",
     category: "minimal",
-    url: "https://i.pinimg.com/736x/fa/ae/79/faae79d6628bbbdd9b2894eec2b8f03f.jpg"
+    url: "./wall-2.jpg"
   },
   {
     id: 3,
     title: "Dark Dunes",
     category: "minimal",
-    url: "https://i.pinimg.com/736x/3b/40/1f/3b401f7783072ea2e41234ca3adce9c0.jpg"
+    url: "./wall-3.jpg"
   }
 ];
 
@@ -79,45 +79,30 @@ modal.addEventListener('click', (e) => {
   if (e.target === modal) modal.classList.add('hidden');
 });
 
-// Automatic Direct Download using HTML5 Canvas
-downloadBtn.addEventListener('click', () => {
+// Instant Direct Download
+downloadBtn.addEventListener('click', async () => {
   if (!activeWallpaper) return;
 
   const originalText = downloadBtn.textContent;
   downloadBtn.textContent = 'Downloading...';
 
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.src = activeWallpaper.url;
-
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-
-    canvas.toBlob((blob) => {
-      const blobUrl = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-      downloadBtn.textContent = originalText;
-    }, 'image/jpeg', 0.95);
-  };
-
-  img.onerror = () => {
+  try {
+    const response = await fetch(activeWallpaper.url);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    
     const link = document.createElement('a');
-    link.href = activeWallpaper.url;
-    link.target = '_blank';
+    link.href = blobUrl;
     link.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    console.error('Download error:', err);
+  } finally {
     downloadBtn.textContent = originalText;
-  };
+  }
 });
 
 // Theme Toggle
