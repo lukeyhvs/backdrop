@@ -4,14 +4,14 @@
   --text-color: #0f172a;
   --accent-color: #6366f1;
   --accent-hover: #4f46e5;
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] {
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --text-color: #f8fafc;
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --bg-color: #000000;
+  --card-bg: #0d0d0d;
+  --text-color: #ffffff;
+  --shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -38,6 +38,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .controls {
@@ -65,6 +66,7 @@ body {
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: background-color 0.2s, color 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cat-btn.active {
@@ -88,6 +90,7 @@ body {
   box-shadow: var(--shadow);
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .wallpaper-card:hover {
@@ -104,7 +107,7 @@ body {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,6 +128,7 @@ body {
   position: relative;
   text-align: center;
   box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .modal-content img {
