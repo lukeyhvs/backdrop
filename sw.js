@@ -1,9 +1,12 @@
-const CACHE_NAME = 'backdrop-v5';
+const CACHE_NAME = 'backdrop-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './styles.css',
-  './app.js'
+  './app.js',
+  './wall-1.jpg',
+  './wall-2.jpg',
+  './wall-3.jpg'
 ];
 
 self.addEventListener('install', (e) => {
