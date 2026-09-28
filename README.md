@@ -10,14 +10,14 @@
 
 ## ✨ Features
 
-- **⚡ Fast & Minimal:** Clean user interface focused on high-res previewing and instant downloads.
-- **🌙 Dark Mode:** Built-in theme switch to toggle between dark and light modes.
-- **📱 Responsive Design:** Optimized for mobile phones, tablets, and desktop displays.
-- **📡 Offline Capability:** Powered by a Service Worker to load seamlessly even without an internet connection.
+- **Fast & Minimal:** Clean user interface focused on high-res previewing and instant downloads.
+- **Dark Mode:** Built-in theme switch to toggle between dark and light modes.
+- **Responsive Design:** Optimized for mobile phones, tablets, and desktop displays.
+- **Offline Capability:** Powered by a Service Worker to load seamlessly even without an internet connection.
 
 ---
 
-## 🎨 Current Wallpapers Collection
+## Current Wallpapers Collection
 
 Here are the featured backgrounds currently available in the **Minimal** collection:
 
@@ -29,7 +29,7 @@ Here are the featured backgrounds currently available in the **Minimal** collect
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 Since **Backdrop** uses standard web technologies, no installation or build step is required!
 
