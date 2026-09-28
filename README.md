@@ -29,12 +29,10 @@ Here are the featured backgrounds currently available in the **Minimal** collect
 
 ---
 
-## How to Run Locally
-
-Since **Backdrop** uses standard web technologies, no installation or build step is required!
-
-1. Clone or download this repository.
-2. Open `index.html` in any web browser.
+## Latest Updates
+- Easier Downloading (Direct Downloading)
+- Three starter wallpapers (More releasing soon)
+- Smoother Performance + Dark mode fixes
 
 ---
 
