@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backdrop - Mobile & Desktop Wallpapers</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="data:application/json,{\"name\":\"Backdrop\",\"short_name\":\"Backdrop\",\"start_url\":\".\",\"display\":\"standalone\",\"background_color\":\"#0f172a\",\"theme_color\":\"#6366f1\"}">
+</head>
+<body>
 
+  <header class="app-header">
+    <div class="logo">
+      <h1>Backdrop</h1>
+    </div>
+    
+    <div class="controls">
+      <label class="toggle-switch" title="Toggle Theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Dark Mode</span>
+    </div>
+  </header>
+
+  <nav class="categories" id="categories-nav">
+    <button class="cat-btn active" data-category="all">All</button>
+    <button class="cat-btn" data-category="nature">Nature</button>
+    <button class="cat-btn" data-category="abstract">Abstract</button>
+    <button class="cat-btn" data-category="minimal">Minimal</button>
+  </nav>
+
+  <main class="wallpaper-grid" id="wallpaper-grid"></main>
+
+  <div id="preview-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <img id="modal-img" src="" alt="Wallpaper Preview">
+      <div class="modal-info">
+        <h3 id="modal-title">Wallpaper Title</h3>
+        <p id="modal-category" class="badge">Category</p>
+      </div>
+      <div class="modal-actions">
+        <button id="download-btn" class="btn primary">Download Wallpaper</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
