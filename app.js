@@ -5,43 +5,25 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.error('SW Registration Failed', err));
 }
 
-// Pre-uploaded Wallpapers Dataset
+// 3 Pre-uploaded Minimal Wallpapers
 const wallpapers = [
   {
     id: 1,
-    title: "Mountain Ridge",
-    category: "nature",
-    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    title: "Monochrome Steps",
+    category: "minimal",
+    url: "https://i.pinimg.com/1200x/ce/a7/50/cea750cd3f8310e3e09fad6a91ad9de8.jpg"
   },
   {
     id: 2,
-    title: "Neon Flow",
-    category: "abstract",
-    url: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80"
+    title: "Granular Flow",
+    category: "minimal",
+    url: "https://i.pinimg.com/736x/fa/ae/79/faae79d6628bbbdd9b2894eec2b8f03f.jpg"
   },
   {
     id: 3,
-    title: "Clean Dunes",
+    title: "Dark Dunes",
     category: "minimal",
-    url: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 4,
-    title: "Forest Fog",
-    category: "nature",
-    url: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 5,
-    title: "Cosmic Glow",
-    category: "abstract",
-    url: "https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    id: 6,
-    title: "Calm Waves",
-    category: "minimal",
-    url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80"
+    url: "https://i.pinimg.com/736x/3b/40/1f/3b401f7783072ea2e41234ca3adce9c0.jpg"
   }
 ];
 
@@ -74,7 +56,7 @@ function renderWallpapers(category = 'all') {
   });
 }
 
-// Category Filter Click Handling
+// Category Filter Handling
 categoriesNav.addEventListener('click', (e) => {
   if (e.target.classList.contains('cat-btn')) {
     document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
