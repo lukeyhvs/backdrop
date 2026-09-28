@@ -5,25 +5,25 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.error('SW Registration Failed', err));
 }
 
-// 3 Pre-uploaded Minimal Wallpapers (Hosted directly in GitHub)
+// Wallpaper Configuration
 const wallpapers = [
   {
     id: 1,
     title: "Monochrome Steps",
     category: "minimal",
-    url: "./wall-1.jpg"
+    url: "wall-1.jpg"
   },
   {
     id: 2,
     title: "Granular Flow",
     category: "minimal",
-    url: "./wall-2.jpg"
+    url: "wall-2.jpg"
   },
   {
     id: 3,
     title: "Dark Dunes",
     category: "minimal",
-    url: "./wall-3.jpg"
+    url: "wall-3.jpg"
   }
 ];
 
@@ -79,7 +79,7 @@ modal.addEventListener('click', (e) => {
   if (e.target === modal) modal.classList.add('hidden');
 });
 
-// Instant Direct Download
+// Direct Blob Download Engine
 downloadBtn.addEventListener('click', async () => {
   if (!activeWallpaper) return;
 
@@ -88,18 +88,26 @@ downloadBtn.addEventListener('click', async () => {
 
   try {
     const response = await fetch(activeWallpaper.url);
+    if (!response.ok) throw new Error('File not found');
+
     const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  } catch (err) {
+    console.warn('Blob download failed, using fallback:', err);
     const link = document.createElement('a');
-    link.href = blobUrl;
+    link.href = activeWallpaper.url;
     link.download = `${activeWallpaper.title.toLowerCase().replace(/\s+/g, '-')}-wallpaper.jpg`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    URL.revokeObjectURL(blobUrl);
-  } catch (err) {
-    console.error('Download error:', err);
   } finally {
     downloadBtn.textContent = originalText;
   }
