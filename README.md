@@ -8,7 +8,7 @@
 
 ---
 
-## ✨ Features
+## Features
 
 - **Fast & Minimal:** Clean user interface focused on high-res previewing and instant downloads.
 - **Dark Mode:** Built-in theme switch to toggle between dark and light modes.
@@ -38,7 +38,7 @@ Since **Backdrop** uses standard web technologies, no installation or build step
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - **HTML5** & **CSS3** (Custom CSS variables for themes)
 - **JavaScript (Vanilla)**
