@@ -1,4 +1,4 @@
-const CACHE_NAME = 'backdrop-v3';
+const CACHE_NAME = 'backdrop-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,7 +7,7 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', (e) => {
-  self.skipWaiting(); // Force new Service Worker to activate immediately
+  self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS_TO_CACHE);
@@ -22,7 +22,7 @@ self.addEventListener('activate', (e) => {
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
             console.log('Deleting old cache:', cache);
-            return caches.delete(cache); // Delete old cached versions
+            return caches.delete(cache);
           }
         })
       );
